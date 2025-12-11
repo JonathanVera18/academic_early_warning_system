@@ -1,0 +1,78 @@
+# Python / Flask
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.env
+.venv/
+venv/
+venv311/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Operating System
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local database
+*.db
+*.sqlite
+*.sqlite3
+
+# CatBoost training info (auto-generated)
+catboost_info/
+
+# Raw data files (sensitive student data)
+*.csv
+!analysis/comprehensive_model_output/model_comparison_results.csv
+
+# Student data folders
+Student score and assistance/
+
+# Thesis documents (LaTeX)
+Thesis text in latexx/
+
+# Development/AI prompts (not for production)
+.gemini/
+PROJECT_ANALYSIS_RESUME.md
+THESIS_GRAPHS_PROMPT.md
+FRONTEND_INTEGRATION_PROMPT.md
+INTEGRATION_PACKAGE.md
+BACKEND_VERIFICATION.md
+
+# Large model files
+models/trained/*.pkl
+models/trained/*.h5
+*.cbm
+
+# Test files
+test_*.py
+check_*.py
+
+# Config with secrets
+config/secrets.py
+instance/
+DATA_EXPLORATION_REPORT.md
+TECHNICAL_DOCUMENTATION.md
+THESIS_VS_IMPLEMENTATION_ANALYSIS.md
+Thesis text in latexx

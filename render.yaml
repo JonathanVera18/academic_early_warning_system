@@ -1,0 +1,26 @@
+# Render Blueprint - Backend Deployment Configuration
+# This file tells Render how to deploy your Flask backend
+
+services:
+  - type: web
+    name: academic-early-warning-api
+    env: python
+    region: oregon  # Free tier available
+    plan: free      # FREE PLAN
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.0
+      - key: FLASK_ENV
+        value: production
+      - key: SUPABASE_URL
+        sync: false  # Set manually in Render dashboard
+      - key: SUPABASE_KEY
+        sync: false  # Set manually in Render dashboard
+      - key: SUPABASE_SERVICE_KEY
+        sync: false  # Set manually in Render dashboard
+      - key: FRONTEND_URL
+        sync: false  # Will be your Vercel URL
+    healthCheckPath: /
