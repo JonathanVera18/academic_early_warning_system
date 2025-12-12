@@ -26,19 +26,12 @@ def create_app():
     # Cargar configuración
     app.config.from_object(get_config())
 
-    # Configurar CORS - allow multiple origins for dev and production
-    allowed_origins = [
-        app.config["FRONTEND_URL"],
-        "http://localhost:3000",
-        "https://*.vercel.app",  # All Vercel preview deployments
-    ]
-    # Filter out None values and add any additional origins from env
-    allowed_origins = [o for o in allowed_origins if o]
-    
+    # Configurar CORS - allow all origins for simplicity in production
+    # In a more secure setup, you'd list specific allowed origins
     CORS(
         app,
-        resources={r"/api/*": {"origins": allowed_origins}},
-        supports_credentials=True,
+        resources={r"/api/*": {"origins": "*"}},
+        supports_credentials=False,
     )
 
     # Configurar logging
