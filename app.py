@@ -15,6 +15,7 @@ import logging
 from routes.students import students_bp
 from routes.predictions import predictions_bp
 from routes.institutional import institutional_bp
+from routes.auth import auth_bp
 
 
 def create_app():
@@ -41,6 +42,7 @@ def create_app():
     )
 
     # Registrar blueprints (rutas)
+    app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(students_bp, url_prefix="/api")
     app.register_blueprint(predictions_bp, url_prefix="/api")
     app.register_blueprint(institutional_bp, url_prefix="/api")

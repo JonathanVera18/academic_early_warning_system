@@ -2,9 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { cn } from '../../lib/utils';
 import { useTheme } from '../../context/ThemeContext';
+import { useAuth } from '../../context/AuthContext';
 
 const Navigation = () => {
   const { theme, toggleTheme } = useTheme();
+  const { user, logout } = useAuth();
   const navItems = [
     { to: '/', label: 'Dashboard SAT', icon: '📊' },
     { to: '/institutional', label: 'Visión Institucional', icon: '🏫' },
@@ -61,19 +63,38 @@ const Navigation = () => {
               </button>
               <div className="relative">
                 <div className="flex items-center gap-3">
-                  <img
-                    className="h-10 w-10 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
+                  <div className="bg-gradient-to-br from-rose-500 to-orange-500 h-10 w-10 rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold text-lg">
+                      {user?.name?.charAt(0) || 'A'}
+                    </span>
+                  </div>
                   <div className="text-left">
                     <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">
-                      Samuel Campozano
+                      {user?.name || 'Administrador'}
                     </div>
                     <div className="text-xs text-slate-500 dark:text-slate-400">
-                      Docente
+                      {user?.role === 'admin' ? 'Administrador' : user?.role || 'Usuario'}
                     </div>
                   </div>
+                  <button
+                    onClick={logout}
+                    className="ml-2 p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-red-100 dark:hover:bg-red-900/30 hover:text-red-600 dark:hover:text-red-400 transition-colors duration-200"
+                    title="Cerrar sesión"
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                      />
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
